@@ -24,7 +24,7 @@ namespace Student_Intake_App.Models
         public string Address1 { get; set; } = string.Empty;
 
         [StringLength(100)]
-        public string Address2 { get; set; } = string.Empty;
+        public string? Address2 { get; set; } = string.Empty;
 
         [StringLength(50)]
         public string City { get; set; } = string.Empty;
