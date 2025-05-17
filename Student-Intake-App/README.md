@@ -37,5 +37,11 @@ Docker issue:
 	- uninstalling and reinstalling docker
 	- adjusting the docker file
 With all of that it showed one time something about a system-level issue. So at that point, with about 25 minutes worth of trying,
-I decided to forgoe using Docker for the project.
+I decided to forgo using Docker for the project.
 
+In this power hour, I realized I created the form for student intake but didn't have the password field. So, I learned the intricacies 
+of how to implement a password field in this language! I like how clean and structured it is, while also allowing speed of development!
+I think the biggest part of learning this language on the fly is that (to me) it is very similar to TypeScript, and there is the awesome part 
+of having a template to work with, instead of creating every little thing from scratch!
+
+With that said, the power hour was a eye opening success! Time to reflect and rest! 

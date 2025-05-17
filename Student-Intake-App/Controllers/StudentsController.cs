@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Student_Intake_App.Data;
 using Student_Intake_App.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Student_Intake_App.Controllers
 {
@@ -52,6 +53,9 @@ namespace Student_Intake_App.Controllers
         {
             if (ModelState.IsValid)
             {
+                var hasher = new PasswordHasher<Student>();
+                student.PasswordHash = hasher.HashPassword(student, student.PasswordHash);
+
                 context.Add(student);
                 await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

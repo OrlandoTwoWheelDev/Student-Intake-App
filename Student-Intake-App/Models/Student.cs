@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Student_Intake_App.Models
 {
@@ -18,6 +19,16 @@ namespace Student_Intake_App.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
+
+        [NotMapped] // <-- Do NOT save this to the DB
+        [Required]
+        [DataType(DataType.Password)]
+        [StringLength(100, ErrorMessage = "Password must be at least 6 characters long.", MinimumLength = 6)]
+        public string Password { get; set; } = string.Empty;
+
+        [Required]
+        public string PasswordHash { get; set; } = string.Empty; // This *will* be saved in the DB
+
 
         [Required]
         [StringLength(100)]
@@ -39,9 +50,11 @@ namespace Student_Intake_App.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [DataType(DataType.Date)]
-        public DateTime? DateOfBirth { get; set; }
+        [Display(Name = "Date of Birth")]
+        [CustomValidation(typeof(StudentValidator), nameof(StudentValidator.ValidateDOB))]
+        public DateTime DOB { get; set; }
 
-
+        [Range(1, 120)]
         public int? Age { get; set; }
     }
 }
