@@ -24,3 +24,18 @@ that fixed, I tested again and it worked!
 
 I do really enjoy the type safety here in C#, as it mirrors that of TypeScript! I also see it adds another layer, or two, to ensure accuracy and speed of development.
 
+## Day 3
+
+Doing a quick power hour to gain some more understanding of the EF environment. Starting out the day I ran into a Docker problem. 
+Docker issue:
+- would not open when clicking the icon or even as 'run as admin'. 
+- when it did open, it would show 'docker engine stopped'.
+- I tried:
+	- restarting the gui
+	- clearing the cache
+	- shutting down the wsl 
+	- uninstalling and reinstalling docker
+	- adjusting the docker file
+With all of that it showed one time something about a system-level issue. So at that point, with about 25 minutes worth of trying,
+I decided to forgoe using Docker for the project.
+
