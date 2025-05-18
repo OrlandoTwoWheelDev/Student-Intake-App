@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+//NOTE: testing out the note feature in Visual Studio
+//TODO: Setup a test project to test the StudentValidator class
 namespace Student_Intake_App.Models
 {
     public class Student

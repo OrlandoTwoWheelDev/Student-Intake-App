@@ -44,4 +44,25 @@ of how to implement a password field in this language! I like how clean and stru
 I think the biggest part of learning this language on the fly is that (to me) it is very similar to TypeScript, and there is the awesome part 
 of having a template to work with, instead of creating every little thing from scratch!
 
-With that said, the power hour was a eye opening success! Time to reflect and rest! 
+With that said, the power hour was a eye opening success! Time to reflect and rest!
+
+## Day 4
+
+Originally, I wanted to do a power hour for code writing today.... but I ended up diving into learning a bit more of Visual Studio! 
+This has been an awesome power hour, learning about the Task List, Error List, and F1 shortcut! As of right now, I dont know how the team
+specifically utilizes these tools or others, but having the general know how of what it does and where to find it seems like a great start!
+Also testing out different theme colors, as the plain dark mode has grown a bit bland for me after 5 months of staring at it for 6-12 hours a day.👀💀
+Although I explored a bunch of features there is on here, I did boil it down to a few things!
+
+Power hour:
+- I am finding a lot more similarities between software engineering and HVAC.
+- Color themes are important for productivity and eye strain.
+- Exploring the IDE is a fantastic way to LEARN about the biggest and most complex tool I have!
+
+HVAC Similarities:
+- There are so many 'brands' and 'styles' in HVAC, just like software engineering has so many languages and frameworks.
+- When you zoom in and out to capture the whole picture and small details, its easy to see they all are the same thing.
+- Even being the same thing, they do have their own quirks, but its fairly simple to learn them.
+- Just like HVAC, once you understand the basics, you can learn the rest of it fairly quickly!
+
+Altough this project has had me a bit stressed at first, I am seeing just how powerful this language is💪🧠
