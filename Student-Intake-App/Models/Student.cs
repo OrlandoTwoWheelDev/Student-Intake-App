@@ -9,6 +9,8 @@ namespace Student_Intake_App.Models
         [Key]
         public int StudentId { get; set; }
 
+        public bool IsAdmin { get; set; } = false;
+
         [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string FirstName { get; set; } = string.Empty;

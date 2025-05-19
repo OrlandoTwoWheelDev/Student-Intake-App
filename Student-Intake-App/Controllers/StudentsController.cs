@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Student_Intake_App.Data;
 using Student_Intake_App.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Student_Intake_App.Controllers
 {
+    [RequireHttps]
     public class StudentsController(AppDbContext context) : Controller
     {
 
@@ -45,11 +47,9 @@ namespace Student_Intake_App.Controllers
         }
 
         // POST: Students/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email,Address1,Address2,City,State,ZipCode,PhoneNumber,DateOfBirth,Age")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,State,ZipCode,PhoneNumber,DOB,Age,IsAdmin")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +60,14 @@ namespace Student_Intake_App.Controllers
                 await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            if (!ModelState.IsValid)
+            {
+                foreach (var modelError in ModelState)
+                {
+                    Console.WriteLine($"{modelError.Key}: {string.Join(", ", modelError.Value.Errors.Select(e => e.ErrorMessage))}");
+                }
+            }
+
             return View(student);
         }
 
@@ -80,11 +88,9 @@ namespace Student_Intake_App.Controllers
         }
 
         // POST: Students/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email,Address1,Address2,City,State,ZipCode,PhoneNumber,DateOfBirth,Age")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,State,ZipCode,PhoneNumber,DOB,Age")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -150,6 +156,17 @@ namespace Student_Intake_App.Controllers
         private bool StudentExists(int id)
         {
             return context.Students.Any(e => e.StudentId == id);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MyAccount()
+        {
+            var studentId = User.Claims.FirstOrDefault(c => c.Type == "StudentId")?.Value;
+            if (studentId == null)
+                return RedirectToAction("Login", "Login");
+
+            var student = await context.Students.FindAsync(int.Parse(studentId));
+            return View("Details", student);
         }
     }
 }
