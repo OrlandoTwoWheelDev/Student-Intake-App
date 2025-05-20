@@ -12,6 +12,6 @@ namespace Student_Intake_App.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Login");
-        }
+        }//added a logout button for those users that actually log out of the app.
     }
 }

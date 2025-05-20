@@ -42,23 +42,37 @@ namespace Student_Intake_App.Controllers
 
         // GET: Students/Create
         public IActionResult Create()
-        {
+        {       //added a dropdown for country codes
+            ViewBag.CountryCodes = new List<SelectListItem>
+            {
+                new() { Value = "US", Text = "United States" },
+                new() { Value = "CA", Text = "Canada" },
+                new() { Value = "MX", Text = "Mexico" },
+                new() { Value = "GB", Text = "United Kingdom" },
+                new() { Value = "DE", Text = "Germany" },
+                new() { Value = "FR", Text = "France" },
+                new() { Value = "JP", Text = "Japan" },
+                new() { Value = "IN", Text = "India" },
+                new() { Value = "AU", Text = "Australia" },
+                new() { Value = "BR", Text = "Brazil" }
+                // can add more as needed
+            };
             return View();
         }
 
         // POST: Students/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,State,ZipCode,PhoneNumber,DOB,Age,IsAdmin")] Student student)
+        [ValidateAntiForgeryToken]                      // added Password, IsAdmin, etc. to the Bind attributes to ensure proper operation of the forms.
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,Region,PostalCode,PhoneNumber,DOB,Age,IsAdmin,CountryCode")] Student student)
         {
             if (ModelState.IsValid)
             {
                 var hasher = new PasswordHasher<Student>();
-                student.PasswordHash = hasher.HashPassword(student, student.PasswordHash);
+                student.PasswordHash = hasher.HashPassword(student, student.Password);
 
                 context.Add(student);
                 await context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new {id = student.StudentId});
             }
             if (!ModelState.IsValid)
             {
@@ -90,7 +104,7 @@ namespace Student_Intake_App.Controllers
         // POST: Students/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,State,ZipCode,PhoneNumber,DOB,Age")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,LastName,Email,Password,Address1,Address2,City,Region,PostalCode,PhoneNumber,DOB,Age,CountryCode")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -101,7 +115,24 @@ namespace Student_Intake_App.Controllers
             {
                 try
                 {
-                    context.Update(student);
+                    // Load the existing student from the DB
+                    var existingStudent = await context.Students.FindAsync(id);
+                    if (existingStudent == null) return NotFound();
+
+                    // Update only the allowed fields
+                    // NOTE: This was part of me attempting to fix the password and 'edit' issue.
+                    // Would need furhter human guidance to learn the proper way to do this.
+                    existingStudent.FirstName = student.FirstName;
+                    existingStudent.LastName = student.LastName;
+                    existingStudent.Email = student.Email;
+                    existingStudent.Address1 = student.Address1;
+                    existingStudent.Address2 = student.Address2;
+                    existingStudent.City = student.City;
+                    existingStudent.Region = student.Region;
+                    existingStudent.PostalCode = student.PostalCode;
+                    existingStudent.PhoneNumber = student.PhoneNumber;
+                    existingStudent.DOB = student.DOB;
+
                     await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -115,10 +146,11 @@ namespace Student_Intake_App.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MyAccount", "Students");
             }
             return View(student);
         }
+
 
         // GET: Students/Delete/5
         public async Task<IActionResult> Delete(int? id)

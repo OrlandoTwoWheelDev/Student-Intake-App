@@ -15,15 +15,18 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Students" asp-action="Create">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Students" asp-action="MyAccount">My Account</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        @if (User.Identity?.IsAuthenticated ?? false)
+                        @if (User.Identity?.IsAuthenticated ?? false) 
+                        // adjusted to keep routes safe by determening if the user is signed in,
+                        //and if the user is a student or admin.
                         {
-                            if (User.IsInRole("Admin"))
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Students" asp-action="MyAccount">My Account</a>
+                            </li>
+
+                            @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin Panel</a>
@@ -37,10 +40,14 @@
                         else
                         {
                             <li class="nav-item">
+                                <a class="nav-link" asp-controller="Students" asp-action="Create">Register</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" asp-controller="Login" asp-action="Login">Log In</a>
                             </li>
                         }
                     </ul>
+
 
                 </div>
             </div>

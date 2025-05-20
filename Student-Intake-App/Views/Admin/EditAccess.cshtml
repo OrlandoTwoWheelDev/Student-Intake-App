@@ -1,0 +1,27 @@
+﻿@{  
+    ViewData["Title"] = "Edit Student Access";  
+}  
+
+<h2>Edit Student Access</h2>  
+
+<form asp-action="EditAccess" method="post">  
+    <div class="form-group">  
+        <label for="studentId">Student ID</label>  
+        <input type="number" id="studentId" name="studentId" class="form-control" required />  
+    </div>  
+    <div class="form-group">  
+        <label for="lastName">Last Name</label>  
+        <input type="text" id="lastName" name="lastName" class="form-control" required />  
+    </div>  
+    <button type="submit" class="btn btn-primary">Get Edit Access</button>  
+</form>  
+
+@if (!ViewData.ModelState.IsValid)  
+{  
+    <div class="text-danger">  
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))  
+        {  
+            <p>@error.ErrorMessage</p>  
+        }  
+    </div>  
+}

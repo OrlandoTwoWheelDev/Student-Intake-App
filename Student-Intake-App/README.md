@@ -1,4 +1,6 @@
-﻿# Student Intake App
+﻿//This is a markdown file, and journey of the project
+
+# Student Intake App
 
 A simple .NET 8 application to manage student intake data.
 
@@ -66,3 +68,28 @@ HVAC Similarities:
 - Just like HVAC, once you understand the basics, you can learn the rest of it fairly quickly!
 
 Altough this project has had me a bit stressed at first, I am seeing just how powerful this language is💪🧠
+
+## Day 5
+
+Well, turns out the https issue wasn't exactly an issue with https. Turns out it was just old cache and a mislabled 'hashPassword' value
+that should have just been 'password'. Cleaning the cache and changing the value fixed it up quickly. Which led me to a slippery slope! 
+The slop of 'oh wait, considering the geographic location and knowing the types of users that use this, I should just add this or that'. 
+One little change let to a rabit hole of changes, and debugging because I forgot to change a value in 2 other files. 
+
+The one issue I am having is coming down to the 'Edit' function. The only way it works is if you actually edit the password as well... which seems
+very unsafe and odd to me. So, I attempted to have the password field in the code but left it optional. I tried it to be in the field but hidden. I tried
+it completely left out, even of the binding. Even as 'read only'. But it was not working as intended, and I found myself seeking actual
+person guidance and expertise. So that part I am leaving for now!
+
+The rest of the code went well, after I adjusted the changes needed thanks to my new rabbit hole changes. 
+
+# Final Thoughts
+
+I am very happy with how this project turned out so far, given I first touch C# and its frameworks 5 days ago. Two of the days I made sure to treat as a 'normal'
+weekend, to really mimic the work-life balance. Along with keeping the time working on the project to under 8hrs per calendar day. It really
+put the pressure into perspective.
+
+Time constraints set aside, the project didn't seem as horrible as I was initially thinking. More so a quick realization of using the similar tools, 
+just in a different tool box! A ton of this felt like TypeScript, but with some extra unique layers, and the ability to have scaffolding and templates to work with!
+That made a huge difference, as it let me ask questions, break things and fix them, and really dive into WHY you would even use this language. After the work I have
+done so far, it is easy to see that this language is powerful, even more so when you have time to play with all its features, break them, and fix them again!
