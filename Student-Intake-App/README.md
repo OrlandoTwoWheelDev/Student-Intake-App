@@ -93,3 +93,13 @@ Time constraints set aside, the project didn't seem as horrible as I was initial
 just in a different tool box! A ton of this felt like TypeScript, but with some extra unique layers, and the ability to have scaffolding and templates to work with!
 That made a huge difference, as it let me ask questions, break things and fix them, and really dive into WHY you would even use this language. After the work I have
 done so far, it is easy to see that this language is powerful, even more so when you have time to play with all its features, break them, and fix them again!
+
+## Day 6
+
+Well well well... yesterday had some kick back. Azure was not cooperating with me. It wouldn't allow my card to sign up for the free trial version. Yesterday also 
+showed me that Render is still as finicky as ever, and would break because of using .NET. In the beginning of the project I had some trouble with Docker, and this morning
+I tried to overcome that obstacle. I setup the yml file, a supporting file within, adjusted my program.cs, and appsettings.json to make sure it was all cohesive. Yet, I 
+kept getting an error for SSL. 
+
+So despite efforts to use Docker, Render, and Azure, I just have the project running locally. 👀💀 But this has fueled my need for more knowledge and to take some simple 
+workshops in TechWorld with Nana! 
